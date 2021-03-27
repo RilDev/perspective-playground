@@ -1,8 +1,11 @@
 <template>
   <div class="bg-gray-800 h-screen flex items-center justify-center">
-    <main class="bg-gray-300 max-w-lg p-6 rounded-md flex">
+    <main class="bg-gray-300 p-6 rounded-md flex">
       <section class="flex flex-col justify-between mr-6">
         <div class="flex flex-col">
+          <label for="text-value">Text</label>
+          <input v-model="textValue" type="text" id="text-value" />
+
           <label for="perspective">Perspective</label>
           <input
             v-model="perspective"
@@ -53,13 +56,13 @@
       <section>
         <div
           :style="containerStyles"
-          class="bg-gray-100 w-60 h-60 flex items-center justify-center relative overflow-hidden"
+          class="p-6 bg-gray-100 w-60 h-60 flex items-center justify-center relative overflow-hidden"
         >
           <div
             :style="elementStyles"
-            class="bg-purple-700 text-white w-16 h-16 flex items-center justify-center absolute"
+            class="p-3 bg-purple-700 text-white flex items-center justify-center absolute"
           >
-            test
+            {{ textValue }}
           </div>
         </div>
       </section>
@@ -75,6 +78,7 @@ const perspective = ref(500);
 const rotateX = ref(0);
 const rotateY = ref(0);
 const rotateZ = ref(0);
+const textValue = ref("Choose your text!");
 
 // watch
 watch(perspective, () => console.log(`perspective: ${perspective.value}`));
