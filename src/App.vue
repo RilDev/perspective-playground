@@ -113,7 +113,7 @@
         class="text-blue-500 hover:text-blue-400 mr-1"
         >RilDev</a
       >
-      &copy;
+      &copy; 2021 |
       <a
         href="https://github.com/RilDev/perspective-playground"
         target="_blank"
