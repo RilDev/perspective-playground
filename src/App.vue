@@ -4,7 +4,29 @@
       <section class="flex flex-col justify-between mr-6">
         <div class="flex flex-col">
           <label for="text-value">Text</label>
-          <input v-model="textValue" type="text" id="text-value" />
+          <input
+            v-model="textValue"
+            :placeholder="defaultText"
+            type="text"
+            id="text-value"
+            class="px-3 py-2 mb-3 rounded-md"
+          />
+
+          <label for="text-color">Text Color</label>
+          <input
+            v-model="textColor"
+            type="color"
+            id="text-color"
+            class="w-full mb-3"
+          />
+
+          <label for="background-color">Background Color</label>
+          <input
+            v-model="backgroundColor"
+            type="color"
+            id="background-color"
+            class="w-full mb-3"
+          />
 
           <label for="perspective">Perspective</label>
           <input
@@ -13,7 +35,7 @@
             min="0"
             max="1000"
             id="perspective"
-            class="bg-gray-800"
+            class="bg-gray-800 mb-3"
           />
 
           <label for="rotate-x">Rotate X</label>
@@ -23,6 +45,7 @@
             min="-180"
             max="180"
             id="rotate-x"
+            class="mb-3"
           />
 
           <label for="rotate-y">Rotate Y</label>
@@ -32,6 +55,7 @@
             min="-180"
             max="180"
             id="rotate-y"
+            class="mb-3"
           />
 
           <label for="rotate-z">Rotate Z</label>
@@ -41,6 +65,7 @@
             min="-180"
             max="180"
             id="rotate-z"
+            class="mb-3"
           />
         </div>
 
@@ -56,7 +81,7 @@
       <section>
         <div
           :style="containerStyles"
-          class="p-6 bg-gray-100 w-60 h-60 flex items-center justify-center relative overflow-hidden"
+          class="p-6 bg-gray-100 w-80 h-full flex items-center justify-center relative overflow-hidden"
         >
           <div
             :style="elementStyles"
@@ -73,18 +98,32 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 
+// static variables
+const defaultPerspective = 500;
+const defaultRotate = 0;
+const defaultText = "Choose your text!";
+const defaultTextColor = "#ffffff";
+const defaultBackgroundColor = "#6d28d9";
+
 // dynamic variables
-const perspective = ref(500);
-const rotateX = ref(0);
-const rotateY = ref(0);
-const rotateZ = ref(0);
-const textValue = ref("Choose your text!");
+const perspective = ref(defaultPerspective);
+const rotateX = ref(defaultRotate);
+const rotateY = ref(defaultRotate);
+const rotateZ = ref(defaultRotate);
+const textValue = ref(defaultText);
+const textColor = ref(defaultTextColor);
+const backgroundColor = ref(defaultBackgroundColor);
 
 // watch
 watch(perspective, () => console.log(`perspective: ${perspective.value}`));
 watch(rotateX, () => console.log(`rotateX: ${rotateX.value}`));
 watch(rotateY, () => console.log(`rotateY: ${rotateY.value}`));
 watch(rotateZ, () => console.log(`rotateZ: ${rotateZ.value}`));
+watch(textValue, () => console.log(`textValue: ${textValue.value}`));
+watch(textColor, () => console.log(`textColor: ${textColor.value}`));
+watch(backgroundColor, () =>
+  console.log(`backgroundColor: ${backgroundColor.value}`)
+);
 
 // computed
 const containerStyles = computed(() => {
@@ -93,6 +132,8 @@ const containerStyles = computed(() => {
 
 const elementStyles = computed(() => {
   return {
+    color: textColor.value,
+    backgroundColor: backgroundColor.value,
     transformStyle: `preserve-3d`,
     transform: `rotateX(${rotateX.value}deg) rotateY(${rotateY.value}deg) rotateZ(${rotateZ.value}deg)`,
   };
@@ -100,10 +141,13 @@ const elementStyles = computed(() => {
 
 // methods
 const reset = () => {
-  perspective.value = 500;
-  rotateX.value = 0;
-  rotateY.value = 0;
-  rotateZ.value = 0;
+  perspective.value = defaultPerspective;
+  rotateX.value = defaultRotate;
+  rotateY.value = defaultRotate;
+  rotateZ.value = defaultRotate;
+  textValue.value = defaultText;
+  textColor.value = defaultTextColor;
+  backgroundColor.value = defaultBackgroundColor;
 };
 </script>
 
