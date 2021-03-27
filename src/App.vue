@@ -1,97 +1,106 @@
 <template>
-  <div class="bg-gray-800 h-screen flex items-center justify-center">
-    <main class="bg-gray-300 p-6 rounded-md flex">
-      <section class="flex flex-col justify-between mr-6">
-        <div class="flex flex-col">
-          <label for="text-value">Text</label>
-          <input
-            v-model="textValue"
-            :placeholder="defaultText"
-            type="text"
-            id="text-value"
-            class="px-3 py-2 mb-3 rounded-md"
-          />
+  <div class="px-10 py-24 bg-gray-800 h-screen">
+    <header>
+      <div class="text-5xl text-gray-50 text-center font-bold">
+        Perspective Playground
+      </div>
+    </header>
+    <div class="flex flex-col items-center justify-center h-full">
+      <main class="bg-gray-300 p-6 rounded-md flex">
+        <section class="flex flex-col justify-between mr-6">
+          <div class="flex flex-col">
+            <label for="text-value">Text</label>
+            <input
+              v-model="textValue"
+              :placeholder="defaultText"
+              type="text"
+              id="text-value"
+              class="px-3 py-2 mb-3 rounded-md"
+            />
 
-          <label for="text-color">Text Color</label>
-          <input
-            v-model="textColor"
-            type="color"
-            id="text-color"
-            class="w-full mb-3"
-          />
+            <label for="text-color">Text Color: {{ textColor }}</label>
+            <input
+              v-model="textColor"
+              type="color"
+              id="text-color"
+              class="w-full mb-3"
+            />
 
-          <label for="background-color">Background Color</label>
-          <input
-            v-model="backgroundColor"
-            type="color"
-            id="background-color"
-            class="w-full mb-3"
-          />
+            <label for="background-color"
+              >Background Color: {{ backgroundColor }}</label
+            >
+            <input
+              v-model="backgroundColor"
+              type="color"
+              id="background-color"
+              class="w-full mb-3"
+            />
 
-          <label for="perspective">Perspective</label>
-          <input
-            v-model="perspective"
-            type="range"
-            min="0"
-            max="1000"
-            id="perspective"
-            class="bg-gray-800 mb-3"
-          />
+            <label for="perspective">Perspective: {{ perspective }}px</label>
+            <input
+              v-model="perspective"
+              type="range"
+              min="0"
+              max="1000"
+              id="perspective"
+              class="bg-gray-800 mb-3"
+            />
 
-          <label for="rotate-x">Rotate X</label>
-          <input
-            v-model="rotateX"
-            type="range"
-            min="-180"
-            max="180"
-            id="rotate-x"
-            class="mb-3"
-          />
+            <label for="rotate-x">Rotate X: {{ rotateX }}deg</label>
+            <input
+              v-model="rotateX"
+              type="range"
+              min="-180"
+              max="180"
+              id="rotate-x"
+              class="mb-3"
+            />
 
-          <label for="rotate-y">Rotate Y</label>
-          <input
-            v-model="rotateY"
-            type="range"
-            min="-180"
-            max="180"
-            id="rotate-y"
-            class="mb-3"
-          />
+            <label for="rotate-y">Rotate Y: {{ rotateY }}deg</label>
+            <input
+              v-model="rotateY"
+              type="range"
+              min="-180"
+              max="180"
+              id="rotate-y"
+              class="mb-3"
+            />
 
-          <label for="rotate-z">Rotate Z</label>
-          <input
-            v-model="rotateZ"
-            type="range"
-            min="-180"
-            max="180"
-            id="rotate-z"
-            class="mb-3"
-          />
-        </div>
-
-        <div>
-          <button
-            @click="reset"
-            class="px-3 py-2 bg-blue-500 text-white text-sm rounded-md uppercase tracking-wider"
-          >
-            Reset
-          </button>
-        </div>
-      </section>
-      <section>
-        <div
-          :style="containerStyles"
-          class="p-6 bg-gray-100 w-80 h-full flex items-center justify-center relative overflow-hidden"
-        >
-          <div
-            :style="elementStyles"
-            class="p-3 bg-purple-700 text-white flex items-center justify-center absolute"
-          >
-            {{ textValue }}
+            <label for="rotate-z">Rotate Z: {{ rotateZ }}deg</label>
+            <input
+              v-model="rotateZ"
+              type="range"
+              min="-180"
+              max="180"
+              id="rotate-z"
+              class="mb-3"
+            />
           </div>
-        </div>
-      </section>
-    </main>
+
+          <div>
+            <button
+              @click="reset"
+              class="px-3 py-2 bg-blue-500 text-white text-sm rounded-md uppercase tracking-wider"
+            >
+              Reset
+            </button>
+          </div>
+        </section>
+        <section>
+          <div
+            :style="containerStyles"
+            class="p-6 bg-gray-100 w-80 h-full flex items-center justify-center relative overflow-hidden"
+          >
+            <div
+              :style="elementStyles"
+              class="p-3 bg-purple-700 text-white flex items-center justify-center absolute"
+            >
+              {{ textValue }}
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
   </div>
 </template>
 
