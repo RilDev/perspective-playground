@@ -1,4 +1,4 @@
-<template>
+<template v-cloak>
   <div class="px-10 py-24 bg-gray-800 h-screen flex flex-col justify-between">
     <header>
       <div class="text-5xl text-gray-50 text-center font-bold">
