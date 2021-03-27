@@ -23,9 +23,14 @@
       </section>
       <section>
         <div
-          class="bg-gray-100 w-60 h-60 flex items-center justify-center relative"
+          :style="{ perspective: `${perspective}px` }"
+          class="bg-gray-100 w-60 h-60 flex items-center justify-center relative overflow-hidden"
         >
           <div
+            :style="{
+              transformStyle: `preserve-3d`,
+              transform: `rotateX(50deg)`,
+            }"
             class="bg-purple-700 text-white w-16 h-16 flex items-center justify-center absolute"
           >
             test
@@ -46,14 +51,18 @@ const perspective = ref(0);
 watch(perspective, () => console.log(perspective.value));
 
 // computed
-// const containerStyles = computed(() => {
-//   perspective: `${perspective.value}px`;
-// });
+const containerStyles = computed(() => {
+  return {
+    perspective: `${perspective.value}px`,
+  };
+});
 
-// const elementStyles = computed(() => {
-//   transformStyle: `preserve-3d`,
-//   transform: `rotateX(-50deg)`,
-// });
+const elementStyles = computed(() => {
+  return {
+    transformStyle: `preserve-3d`,
+    transform: `rotateX(-50deg)`,
+  };
+});
 </script>
 
 <style>
