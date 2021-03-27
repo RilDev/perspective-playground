@@ -1,10 +1,6 @@
-<template>
-  <HelloWorld msg="Hello Vue 3 + Vite" />
-</template>
+<template></template>
 
-<script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
+<script setup></script>
 
 <style>
 [v-cloak] {
