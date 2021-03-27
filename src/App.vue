@@ -9,7 +9,6 @@
       <main class="bg-gray-300 p-6 rounded-md flex">
         <section class="flex flex-col justify-between mr-6">
           <div class="flex flex-col">
-            <label for="text-value">Text</label>
             <input
               v-model="textValue"
               :placeholder="defaultText"
@@ -80,9 +79,15 @@
           <div>
             <button
               @click="reset"
-              class="px-3 py-2 bg-blue-500 text-white text-sm rounded-md uppercase tracking-wider"
+              class="px-3 py-2 mr-2 bg-blue-500 text-white text-sm rounded-md uppercase tracking-wider"
             >
               Reset
+            </button>
+            <button
+              @click="copy"
+              class="px-3 py-2 bg-green-500 text-white text-sm rounded-md uppercase tracking-wider"
+            >
+              Copy
             </button>
           </div>
         </section>
@@ -108,7 +113,7 @@
 import { ref, computed } from "vue";
 
 // static variables
-const defaultPerspective = 500;
+const defaultPerspective = 100;
 const defaultRotate = 0;
 const defaultText = "Choose your text!";
 const defaultTextColor = "#ffffff";
@@ -146,6 +151,34 @@ const reset = () => {
   textValue.value = defaultText;
   textColor.value = defaultTextColor;
   backgroundColor.value = defaultBackgroundColor;
+};
+
+const copy = () => {
+  // create textarea that will hold content to copy to clipboard
+  const element = document.createElement("textarea");
+
+  // set element's css and content
+  element.setAttribute("readonly", "");
+  element.style.position = "absolute";
+  element.style.left = "-10000px";
+  element.value = `<div class="card">${textValue.value}</div>
+
+<style>
+  .card {
+    position: absolute;
+    color: ${textColor.value};
+    background-color: ${backgroundColor.value};
+    transform-style: preserve-3d;
+    transform: perspective(${perspective.value}px) rotateX(${rotateX.value}deg) rotateY(${rotateY.value}deg) rotateZ(${rotateZ.value}deg);
+    padding: 12px;
+  }
+</style>`;
+
+  // copy element value to clipboard
+  document.body.appendChild(element);
+  element.select();
+  document.execCommand("copy");
+  document.body.removeChild(element);
 };
 </script>
 
