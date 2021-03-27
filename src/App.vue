@@ -52,14 +52,11 @@
       </section>
       <section>
         <div
-          :style="{ perspective: `${perspective}px` }"
+          :style="containerStyles"
           class="bg-gray-100 w-60 h-60 flex items-center justify-center relative overflow-hidden"
         >
           <div
-            :style="{
-              transformStyle: `preserve-3d`,
-              transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`,
-            }"
+            :style="elementStyles"
             class="bg-purple-700 text-white w-16 h-16 flex items-center justify-center absolute"
           >
             test
@@ -87,18 +84,17 @@ watch(rotateZ, () => console.log(`rotateZ: ${rotateZ.value}`));
 
 // computed
 const containerStyles = computed(() => {
-  return {
-    perspective: `${perspective.value}px`,
-  };
+  return { perspective: `${perspective.value}px` };
 });
 
 const elementStyles = computed(() => {
   return {
     transformStyle: `preserve-3d`,
-    transform: `rotateX(-50deg)`,
+    transform: `rotateX(${rotateX.value}deg) rotateY(${rotateY.value}deg) rotateZ(${rotateZ.value}deg)`,
   };
 });
 
+// methods
 const reset = () => {
   perspective.value = 500;
   rotateX.value = 0;
