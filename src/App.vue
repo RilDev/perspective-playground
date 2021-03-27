@@ -105,7 +105,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed } from "vue";
 
 // static variables
 const defaultPerspective = 500;
@@ -122,17 +122,6 @@ const rotateZ = ref(defaultRotate);
 const textValue = ref(defaultText);
 const textColor = ref(defaultTextColor);
 const backgroundColor = ref(defaultBackgroundColor);
-
-// watch
-watch(perspective, () => console.log(`perspective: ${perspective.value}`));
-watch(rotateX, () => console.log(`rotateX: ${rotateX.value}`));
-watch(rotateY, () => console.log(`rotateY: ${rotateY.value}`));
-watch(rotateZ, () => console.log(`rotateZ: ${rotateZ.value}`));
-watch(textValue, () => console.log(`textValue: ${textValue.value}`));
-watch(textColor, () => console.log(`textColor: ${textColor.value}`));
-watch(backgroundColor, () =>
-  console.log(`backgroundColor: ${backgroundColor.value}`)
-);
 
 // computed
 const containerStyles = computed(() => {
