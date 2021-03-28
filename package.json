@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "generate-logo": "node src/scripts/generate-logo.mjs"
   },
   "dependencies": {
     "vue": "^3.0.5"
@@ -13,6 +14,8 @@
     "@vitejs/plugin-vue": "^1.1.5",
     "@vue/compiler-sfc": "^3.0.5",
     "autoprefixer": "^10.2.5",
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
     "postcss": "^8.2.8",
     "tailwindcss": "^2.0.4",
     "vite": "^2.1.0"
